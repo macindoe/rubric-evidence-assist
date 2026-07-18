@@ -1,3 +1,4 @@
+import copy
 import json
 
 from .bedrock_client import get_bedrock_client, get_model_id
@@ -7,6 +8,7 @@ ASSESSMENT_TOOL_SCHEMA = {
     "properties": {
         "criteria": {
             "type": "array",
+            "minItems": 1,
             "items": {
                 "type": "object",
                 "properties": {
@@ -115,6 +117,17 @@ def build_user_prompt(rubric: dict, essay_text: str) -> str:
     )
 
 
+def _build_tool_schema(rubric: dict) -> dict:
+    """Tighten the criteria array to exactly the rubric's criterion count, so a
+    structurally valid but incomplete response (too few or too many criteria) is
+    rejected at the schema level rather than silently accepted."""
+    schema = copy.deepcopy(ASSESSMENT_TOOL_SCHEMA)
+    count = len(rubric["criteria"])
+    schema["properties"]["criteria"]["minItems"] = count
+    schema["properties"]["criteria"]["maxItems"] = count
+    return schema
+
+
 def mark_essay(essay_text: str, rubric: dict, _retries: int = 1) -> dict:
     client = get_bedrock_client()
     model_id = get_model_id()
@@ -129,7 +142,7 @@ def mark_essay(essay_text: str, rubric: dict, _retries: int = 1) -> dict:
                     "toolSpec": {
                         "name": "submit_marking_assessment",
                         "description": "Submit the structured marking assessment for teacher review.",
-                        "inputSchema": {"json": ASSESSMENT_TOOL_SCHEMA},
+                        "inputSchema": {"json": _build_tool_schema(rubric)},
                     }
                 }
             ],
