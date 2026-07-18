@@ -1,0 +1,36 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Raw student data / local test fixtures - never committed
+raw_data/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Node / Electron
+node_modules/
+dist/
+build/
+out/
+
+# Marking artifact output (per-student audit trail - stays local)
+artifacts/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Claude Code local settings (personal, not project config)
+.claude/settings.local.json
