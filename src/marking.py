@@ -118,13 +118,25 @@ def build_user_prompt(rubric: dict, essay_text: str) -> str:
 
 
 def _build_tool_schema(rubric: dict) -> dict:
-    """Tighten the criteria array to exactly the rubric's criterion count, so a
-    structurally valid but incomplete response (too few or too many criteria) is
-    rejected at the schema level rather than silently accepted."""
+    """Tighten mark-related bounds to the specific rubric being marked, so a
+    structurally valid but wrong response (too few/many criteria, or marks exceeding
+    what the rubric allows) is rejected at the schema level rather than silently
+    accepted."""
     schema = copy.deepcopy(ASSESSMENT_TOOL_SCHEMA)
     count = len(rubric["criteria"])
     schema["properties"]["criteria"]["minItems"] = count
     schema["properties"]["criteria"]["maxItems"] = count
+
+    schema["properties"]["total_suggested_marks"]["maximum"] = rubric["total_marks"]
+
+    # A single items schema applies to every array element, so this can only bound
+    # suggested_marks by the highest max_marks across all criteria, not each
+    # criterion's own maximum - still catches obviously-wrong values (e.g. a mark
+    # exceeding every criterion's ceiling), just not a value that's valid for one
+    # criterion but too high for the specific one it's attached to.
+    highest_criterion_max = max(c["max_marks"] for c in rubric["criteria"])
+    schema["properties"]["criteria"]["items"]["properties"]["suggested_marks"]["maximum"] = highest_criterion_max
+
     return schema
 
 
