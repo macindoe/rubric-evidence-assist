@@ -11,8 +11,12 @@ holds the AWS and GitHub accounts and is building this on her behalf.
 ## Architecture (locked decisions — don't relitigate without a real reason)
 - **No hosted backend.** Runs entirely on a local machine (currently the son's, eventually
   hers). No shared server holds student data.
-- **AWS Bedrock in `ap-southeast-2` (Sydney) only** — a NSW data-residency requirement, not a
-  preference. See Compliance below.
+- **AWS Bedrock, Australia only** — sourced from `ap-southeast-2` (Sydney), routed only through
+  the AU-scoped inference profile, which itself only ever lands in `ap-southeast-2` (Sydney) or
+  `ap-southeast-4` (Melbourne) — never overseas. This is a NSW data-residency requirement, not a
+  preference. "Sydney only" would be inaccurate: the AU profile is cross-region *within
+  Australia*, which is what satisfies the requirement. See Compliance below and "The Bedrock
+  model saga" further down for the full detail.
 - **The teacher is always the final judge.** The tool suggests a band, evidence quotes, and
   AI-concern flags. Nothing is ever auto-committed as a final mark. Every suggested field must
   stay editable in the eventual UI — this is a compliance requirement (NESA's stated position is

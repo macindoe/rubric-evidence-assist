@@ -11,13 +11,23 @@ load_dotenv()
 BEDROCK_CONFIG = Config(read_timeout=300, connect_timeout=10, retries={"max_attempts": 2, "mode": "standard"})
 
 
+def _require_env(name: str) -> str:
+    value = os.environ.get(name)
+    if not value:
+        raise RuntimeError(
+            f"Missing required environment variable '{name}'. "
+            "Copy .env.example to .env and fill in real values."
+        )
+    return value
+
+
 def get_bedrock_client():
     return boto3.client(
         "bedrock-runtime",
-        region_name=os.environ["AWS_DEFAULT_REGION"],
+        region_name=_require_env("AWS_DEFAULT_REGION"),
         config=BEDROCK_CONFIG,
     )
 
 
 def get_model_id() -> str:
-    return os.environ["BEDROCK_MODEL_ID"]
+    return _require_env("BEDROCK_MODEL_ID")

@@ -14,13 +14,15 @@ ASSESSMENT_TOOL_SCHEMA = {
                     "criterion_name": {"type": "string"},
                     "max_marks": {"type": "integer"},
                     "suggested_band": {"type": "string"},
-                    "suggested_marks": {"type": "integer"},
+                    "suggested_marks": {"type": "integer", "minimum": 0},
                     "justification": {
                         "type": "string",
                         "description": "1-2 sentences linking the evidence to the specific language of the chosen band's descriptor.",
                     },
                     "evidence": {
                         "type": "array",
+                        "minItems": 1,
+                        "maxItems": 3,
                         "items": {
                             "type": "object",
                             "properties": {
@@ -70,7 +72,7 @@ ASSESSMENT_TOOL_SCHEMA = {
                 "required": ["quote", "concern_level", "reason"],
             },
         },
-        "total_suggested_marks": {"type": "integer"},
+        "total_suggested_marks": {"type": "integer", "minimum": 0},
     },
     "required": ["criteria", "ai_concern_passages", "total_suggested_marks"],
 }
