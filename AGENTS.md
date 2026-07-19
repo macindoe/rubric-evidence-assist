@@ -163,7 +163,5 @@ multi-teacher packaging.
 ## Working conventions
 - Only commit or push when the user explicitly asks — don't do it proactively after finishing a
   chunk of work.
-- Git identity for this repo: `macindoe` / `macindoebenjamin@gmail.com` (set locally, not
-  global — this is the user's public/GitHub identity, distinct from any email tied to their
-  Claude account).
+- Git identity for this repo: `macindoe` (set locally, not global — this is the user's public/GitHub identity, distinct from any email tied to their Claude account).
 - GitHub repo: `macindoe/rubric-evidence-assist` (public).
