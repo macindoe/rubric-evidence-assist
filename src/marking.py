@@ -1,7 +1,12 @@
 import copy
 import json
+import re
 
 from .bedrock_client import get_bedrock_client, get_model_id
+
+# Matches our essay delimiter tag in any case/spacing, so it can be neutralized
+# wherever it appears inside untrusted essay text - see _neutralize_delimiter.
+_DELIMITER_PATTERN = re.compile(r"</?\s*student_essay\s*>", re.IGNORECASE)
 
 ASSESSMENT_TOOL_SCHEMA = {
     "type": "object",
@@ -115,15 +120,24 @@ schema exactly - never a JSON-encoded string.
 """
 
 
+def _neutralize_delimiter(text: str) -> str:
+    """Escape any literal occurrence of the <student_essay>/</student_essay> tag
+    (any case/spacing) inside untrusted essay text, so it can never spoof the real
+    delimiter and make injected content appear to fall outside the tagged block."""
+    return _DELIMITER_PATTERN.sub(lambda m: m.group(0).replace("<", "&lt;").replace(">", "&gt;"), text)
+
+
 def build_user_prompt(rubric: dict, essay_text: str) -> str:
     # XML-style tags instead of triple backticks: essays copied from markdown/code
     # sources can legitimately contain ``` themselves, which would break a
     # backtick-delimited block. <student_essay> is far less likely to appear in
     # student prose and is easier for the model to reason about as a boundary.
+    # The essay text itself is still neutralized below in case it does.
+    safe_essay_text = _neutralize_delimiter(essay_text)
     return (
         f"Rubric (JSON):\n{json.dumps(rubric, indent=2)}\n\n"
         "Student essay text follows, delimited by <student_essay> tags.\n\n"
-        f"<student_essay>\n{essay_text}\n</student_essay>"
+        f"<student_essay>\n{safe_essay_text}\n</student_essay>"
     )
 
 

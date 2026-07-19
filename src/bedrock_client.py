@@ -42,4 +42,16 @@ def get_bedrock_client():
 
 
 def get_model_id() -> str:
-    return _require_env("BEDROCK_MODEL_ID")
+    model_id = _require_env("BEDROCK_MODEL_ID")
+    # The region check above only constrains where the boto3 client connects, not
+    # where inference actually routes - that's determined by the model/profile ID
+    # itself. A Global/US/EU profile ID would still pass the region check while
+    # violating in-country residency, so the AU-scoped prefix is enforced here too.
+    if not model_id.startswith("au."):
+        raise RuntimeError(
+            f"BEDROCK_MODEL_ID='{model_id}' is not an AU-scoped inference profile "
+            "(expected it to start with 'au.', e.g. 'au.anthropic.claude-sonnet-4-6'). "
+            "A non-AU profile could route inference outside Australia - see AGENTS.md "
+            "'The Bedrock model saga'. Refusing to proceed."
+        )
+    return model_id
