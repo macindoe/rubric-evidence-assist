@@ -1,0 +1,65 @@
+{
+  "title": "Depth study ; hand in here",
+  "subject": "NSW HSC Chemistry, Year 12",
+  "total_marks": 30,
+  "criteria": [
+    {
+      "code": "CH12-1",
+      "name": "Develops and evaluates question and hypothesis for scientific investigation",
+      "max_marks": 5,
+      "bands": [
+        { "band": "Outstanding", "marks": 5, "descriptor": "Skilfully develops an inquiry question and hypothesis by identifying concept(s) related to organic chemistry that can be investigated scientifically. Comprehensively explains the rationale for choice of country/countries used, including both qualitative and quantitative data and information, identifies references from mandatory lessons." },
+        { "band": "High", "marks": 4, "descriptor": "Develops an inquiry question and hypothesis by identifying concept(s) related to organic chemistry that can be investigated scientifically. Explains or describes the choice of country/countries, including qualitative/quantitative data and information, identifies references from mandatory lessons." },
+        { "band": "Sound", "marks": 3, "descriptor": "Shows an understanding of scientific concept and satisfactorily develops an inquiry question related to organic chemistry. Mentions choice of country and references, uses some data" },
+        { "band": "Developing", "marks": 2, "descriptor": "Develops an inquiry question and attempts to provide a rationale for choice of country or references, using some data" },
+        { "band": "Limited", "marks": 1, "descriptor": "Attempts to develop an inquiry question but lacks clarity and detail about choice of country/reference/uses data" }
+      ]
+    },
+    {
+      "code": "CH12-3",
+      "name": "Conducts investigations to collect valid and reliable data and information",
+      "max_marks": 4,
+      "bands": [
+        { "band": "Outstanding", "marks": 4, "descriptor": "Skilfully conducts investigations from valid and reliable primary source related to organic chemistry, using appropriate method by explaining method and observation." },
+        { "band": "High", "marks": 3, "descriptor": "Conducts appropriate investigations from primary source related to organic chemistry, using some appropriate method and observation." },
+        { "band": "Developing", "marks": 1, "descriptor": "Identifies primary source investigation with brief method or result." }
+      ]
+    },
+    {
+      "code": "CH12-5",
+      "name": "Analysing and evaluating data and information",
+      "max_marks": 7,
+      "bands": [
+        { "band": "Outstanding", "marks": 7, "descriptor": "Comprehensively describes findings related to inquiry question, using secondary sources from the mandatory lessons on the methods of dealing with a wide range of organic compounds found in household wastes, shows an extensive understanding by analyzing related data using relevant chemical equations, diagrams, tables and graphs, evaluates data and information" },
+        { "band": "High", "marks": 5, "descriptor": "A good description to answer findings related to the inquiry question, using secondary sources from the mandatory lessons on methods of dealing with organic compounds found in household wastes. Some analysis of data using relevant chemical equations, diagrams, tables and graphs by explaining data and information." },
+        { "band": "Sound", "marks": 4, "descriptor": "Satisfactorily identifies trends and patterns in data, list some results using methods of dealing with organic compounds found in household wastes from the mandatory lessons. Lacks depth of understanding of data and information. Includes some relevant chemical equations/diagrams/data." },
+        { "band": "Developing", "marks": 2, "descriptor": "Shows a basic understanding of methods of garbage disposal/chemical equations. No analysis of data." },
+        { "band": "Limited", "marks": 1, "descriptor": "Attempts to identify one of the following: a trend and pattern in data, chemical equation and/or some diagrams/tables/graph. Or mentions uses of carbon-based compounds." }
+      ]
+    },
+    {
+      "code": "CH12-6",
+      "name": "Solves scientific problems",
+      "max_marks": 7,
+      "bands": [
+        { "band": "Outstanding", "marks": 7, "descriptor": "Solves problems by critically evaluating their understanding of scientific principles. Skilfully synthesizes and uses evidence to construct and justify proposed viable models for improving methods of dealing with products made of organic compounds found in household wastes for Australia." },
+        { "band": "High", "marks": 6, "descriptor": "Solves problems by describing viable models for improving methods for dealing with products made of organic compounds found in household wastes for Australia." },
+        { "band": "Sound", "marks": 4, "descriptor": "Solves a problem using a proposal to deal with the disposal of hydrocarbon products in Australia." },
+        { "band": "Developing", "marks": 2, "descriptor": "Solves a problem using a brief outline showing how Australia deals with its household wastes." },
+        { "band": "Limited", "marks": 1, "descriptor": "Attempts to solve a problem due to the products from hydrocarbons." }
+      ]
+    },
+    {
+      "code": "CH12-7, CH12-15",
+      "name": "Communicates using suitable language and terminology (Background information and conclusion)",
+      "max_marks": 7,
+      "bands": [
+        { "band": "Outstanding", "marks": 7, "descriptor": "Communicates background information with clarity and accuracy. Uses appropriate language for a specific audience and selects a suitable form of communication. Shows an extensive understanding of appropriate scientific notation and nomenclature. Evaluates the production, uses of carbon-based compounds. Draws well-supported valid conclusion(s)." },
+        { "band": "High", "marks": 6, "descriptor": "Communicates background information with clarity and accuracy. Uses appropriate language for a specific audience and selects a suitable form of communication. Shows a high level of understanding by using scientific notation and nomenclature. Describes the production, uses of carbon-based compounds. Draws valid conclusion(s)." },
+        { "band": "Sound", "marks": 4, "descriptor": "Communicates background information. Uses appropriate language satisfactorily for a specific audience and selects a suitable form of communication. Lists the production, uses of carbon-based compounds. Includes a valid conclusion." },
+        { "band": "Developing", "marks": 2, "descriptor": "Communicates some background information. Displays a basic understanding of the uses and/or production of carbon-based compounds. Includes a conclusion." },
+        { "band": "Limited", "marks": 1, "descriptor": "Attempts to communicate the results of the investigation by listing either use/production/a conclusion." }
+      ]
+    }
+  ]
+}
