@@ -147,6 +147,13 @@ Pattern for any future swap:
 
 ## Next steps, roughly in order
 1. Google Drive auth + fetch a submission from a Classroom assignment folder.
+   - **Open question — check before wiring up the OAuth client**: does the
+     `classroom.coursework.students` scope alone let us fetch submission file contents, or do we
+     still need full `drive.readonly`? `drive.readonly` is a *restricted* scope (Google's
+     highest-sensitivity tier) — avoiding it would mean a narrower blast radius if the token ever
+     leaks, and one less thing to explain if the school ever asks what this tool can access.
+     Worth 15 minutes against a real Classroom assignment before assuming the broad scope is
+     required.
 2. PDF conversion: Drive API `files.export` for native Google Docs; LibreOffice headless for
    uploaded `.docx` (covers the SharePoint-submission edge case the teacher flagged).
 3. Feed PDF (multimodal) into the Bedrock call instead of plain text.
